@@ -1,0 +1,64 @@
+#include <iostream>
+#include "Human.h"
+
+std::list<Human> humans;
+
+int gold = 0;
+int humansAmt1 = 0;
+float armyStrength1 = 5.0f * 100 / 50;
+int humansAmt2 = 0;
+float armyStrength2 = 5.0f * 100 / 50;
+float armyStrengthDiff = 0.0f;
+int main() {
+	// Team 1
+	std::cout << "You have " << gold << "g\n";
+	std::cout << "You can buy "
+	std::cout << "How Many Men for team 1?  ";
+	std::cin >> humansAmt1;
+	
+	for (int i = 0; i < humansAmt1; i++) {
+		humans.push_back(Human(5.0f, 100));
+
+	}
+	std::cout << "There are " << humansAmt1 << " Men for team 1\n";
+	armyStrength1 *= humansAmt1;
+	
+	std::cout << "team 1's Combined ArmyStrength is  ";
+	printf("%.2f", armyStrength1);
+	// Team 2
+	std::cout << "   How Many Men for team 2?  ";
+	std::cin >> humansAmt2;
+	
+	for (int i = 0; i < humansAmt2; i++) {
+		humans.push_back(Human(5, 5.0f, 100));
+
+	}
+	std::cout << "There are " << humansAmt2 << " Men for team 2\n";
+	armyStrength2 *= humansAmt2;
+	std::cout << "team 2's Combined ArmyStrength is  ";
+	printf("%.2f", armyStrength2);
+	// Battle Calc
+	if (armyStrength1 > armyStrength2) {
+		std::cout << "\nTeam 1 is Victorious!\n";		
+		armyStrengthDiff = armyStrength1 - armyStrength2;
+		std::cout << "Team 1 had ";
+		printf("%.2f", armyStrengthDiff);
+		std::cout << "More Army Strength than team 2";
+	}
+	else {
+		std::cout << "\nTeam 2 is Victorious!\n";
+		armyStrengthDiff = armyStrength2 - armyStrength2;
+		std::cout << "Team 2 had ";
+		printf("%.2f", armyStrengthDiff);
+		std::cout << "More Army Strength than team 1";
+	
+	
+	}
+	//end
+	
+	
+	int temp = 0;
+	std::cin >> temp;
+
+	return 0;
+}
