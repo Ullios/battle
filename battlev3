@@ -1,0 +1,159 @@
+#include <iostream>
+#include "Human.h"
+#include <list>
+
+std::list<Human> armyOne;
+std::list<Human> armyTwo;
+
+float playerGold = 100;
+int hireCost = 5;
+
+int numHumans1 = 0;
+int numHumans2 = 20;
+
+float armyStrength1 = 0;
+float armyStrength2 = 0;
+
+float armyStrengthDiff = 0.0f;
+
+int playerSelection = -1;
+bool GAME_LOOP = true;
+
+
+
+
+void printStats()
+{
+	// Your Army
+	std::cout << "You have " << playerGold << "g\n";
+	// Count total stats for all humans in army 1
+	int armyOneTotHealth = 0;
+	int armyOneTotDamage = 0;
+	for (auto& it : armyOne)
+	{
+		armyOneTotHealth += it.health;
+		armyOneTotDamage += it.damage;
+	}
+	int totalPowerONE = armyOneTotHealth * armyOneTotDamage / armyOne.size();
+
+
+	// Team 2 ######################################################
+	int armyTwoTotHealth = 0;
+	int armyTwoTotDamage = 0;
+	for (auto& it : armyTwo)
+	{
+		armyTwoTotHealth += it.health;
+		armyTwoTotDamage += it.damage;
+	}
+	int totalPowerTWO = armyTwoTotHealth * armyTwoTotDamage / armyTwo.size();
+
+
+	std::cout << "    ARMY ONE    ";
+	std::cout << "Army size: " << armyOne.size() << std::endl;
+	std::cout << "Army power: " << totalPowerONE << std::endl;
+
+	std::cout << "    ARMY TWO    ";
+	std::cout << "Army size: " << armyTwo.size() << std::endl;
+	std::cout << "Army power: " << totalPowerTWO << std::endl;
+
+	
+}
+
+void changeStats()
+{
+	int previousSize = numHumans1;
+
+	int numNewHumans = 0;
+	// FOR EDITING ARMY 1
+	std::cout << "How many men would you like to hire? \n"; // ADD ON TO CURRENT ARMY 1 size
+	std::cin >> numNewHumans;
+
+	int newSize = (numNewHumans + previousSize) - previousSize;
+	numHumans1 = numNewHumans + previousSize; // Finds total off all humans in army 1 for tracking
+	playerGold -= newSize * hireCost; // Subtracts money
+
+
+									  // Add in new humans to armyOne list
+	for (int i = 0; i < newSize; i++)
+	{
+		armyOne.push_back(Human(5 , 5.0f, 100));
+
+	}
+
+
+}
+
+void simulateBattle() 
+{
+
+}
+
+int getInput()
+{
+
+	int temp;
+	std::cout << "Enter input for options!\n";
+	std::cin >> playerSelection;
+
+	switch (playerSelection)
+	{
+	case 0:
+	{ // ZERO TO QUIT GAME LOOP
+		GAME_LOOP = false;
+		
+		break;
+	}
+
+	case 1:
+	{ // EDIT HUMAN NUMBERS 
+		changeStats(); // FINISH THIS FUNCTION
+					   
+		break;
+	}
+	case 2:
+	{ // Battle Simulation
+		simulateBattle();
+
+		break;
+	}
+
+
+	default:
+	{
+
+	}
+	}
+
+	return 1;
+}
+
+void battle()
+{
+
+}
+
+
+int main()
+{
+	changeStats();
+	for (int i = 0; i < numHumans2; i++)
+	{
+		armyTwo.push_back(Human(5 , 5.0f, 100));
+	}
+
+
+	while (GAME_LOOP)
+	{
+		printStats();
+		getInput();
+		// Put more code here 
+
+
+	}
+
+
+	int temp = 0;
+	std::cin >> temp;
+
+	return 1;
+}
